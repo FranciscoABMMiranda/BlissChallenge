@@ -1,0 +1,39 @@
+.retry-widget {
+  width: 100vw;
+  height: 100vh;
+}
+
+.retry-widget span {
+  margin-right: 0.5rem;
+}
+
+.retry-msg {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 1rem;
+
+  border: 1px solid grey;
+  border-radius: 4px;
+  box-shadow: 3px 4px 10px #888888;
+}
+
+.retry-button {
+  cursor: pointer;
+  transition: 750ms ease;
+}
+.retry-button p {
+  margin: 0.5rem;
+}
+
+.retry-button:hover {
+  transition: 750ms ease;
+}

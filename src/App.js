@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { LoadingScreen } from "./components/LoadingScreen";
+import { RetryWidget } from "./components/shared";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    serverStatus: false,
+    statusFailed: false,
+  };
+
+  componentDidMount() {
+    this.getServerStatus();
+  }
+
+  getServerStatus() {
+    const url =
+      "https://private-anon-7eb2956589-blissrecruitmentapi.apiary-mock.com/health";
+    fetch(url, {
+      method: "GET",
+    }).then((response) => {
+      if (response.ok) {
+        this.setState({ serverStatus: true, statusFailed: false });
+        console.log("Server connection established!");
+      } else {
+        this.setState({ statusFailed: true });
+      }
+    });
+  }
+
+  retryConnection() {
+    this.getServerStatus();
+  }
+
+  renderLoading() {
+    const { statusFailed, serverStatus } = this.state;
+    if (statusFailed) {
+      return <RetryWidget retryConnection={this.retryConnection.bind(this)} />;
+    }
+    return serverStatus ? null : <LoadingScreen />;
+  }
+
+  render() {
+    return <div className="App">{this.renderLoading()}</div>;
+  }
 }
 
 export default App;
