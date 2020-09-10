@@ -45,8 +45,8 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.renderLoading()}
-        <Header></Header>
-        <QuestionListScreen></QuestionListScreen>
+        <Header />
+        <QuestionListScreen />
       </div>
     );
   }

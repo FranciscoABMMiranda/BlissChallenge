@@ -1,9 +1,12 @@
 import React from "react";
+import HeaderQuestionList from "./HeaderQuestionList";
+import QuestionList from "./QuestionList";
 
 class QuestionListScreen extends React.Component {
   state = {
     limit: 10,
     offset: 0,
+    list: [],
   };
 
   componentDidMount() {
@@ -17,13 +20,16 @@ class QuestionListScreen extends React.Component {
       method: "GET",
     })
       .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-      });
+      .then((json) => this.setState({ list: json }));
   }
 
   render() {
-    return <main></main>;
+    return (
+      <main className="question-main">
+        <HeaderQuestionList />
+        <QuestionList list={this.state.list} />
+      </main>
+    );
   }
 }
 

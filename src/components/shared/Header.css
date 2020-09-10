@@ -1,14 +1,15 @@
 .header {
   position: fixed;
 
+  width: 100vw;
+  height: var(--header-heigth);
+
   display: flex;
   flex-direction: row;
   align-items: center;
   top: 0;
 
-  width: 100vw;
-  height: var(--header-heigth);
-
+  background-color: #fff;
   box-shadow: 0px 4px 10px #888888;
 }
 

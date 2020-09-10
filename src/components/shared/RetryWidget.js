@@ -4,7 +4,7 @@ import { ReloadOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 class RetryWidget extends React.Component {
   render() {
     return (
-      <main className="retry-widget">
+      <div className="retry-widget">
         <section className="retry-msg">
           <div>
             <ExclamationCircleOutlined />
@@ -18,7 +18,7 @@ class RetryWidget extends React.Component {
             </p>
           </button>
         </section>
-      </main>
+      </div>
     );
   }
 }

@@ -1,0 +1,29 @@
+.question-list {
+  border-collapse: collapse;
+}
+.question-list th {
+  padding: 0.7rem;
+}
+
+.question-list td {
+  padding: 0.9rem 0.7rem;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.details-btn {
+  padding: 0.7rem;
+  border: 0;
+  border-radius: 2px;
+
+  background-color: var(--primary-color);
+  color: #fff;
+  outline: none;
+
+  cursor: pointer;
+  transition: 750ms ease;
+}
+
+.details-btn:hover {
+  background-color: #47476b;
+}
