@@ -1,9 +1,11 @@
 @import "./components/LoadingScreen/LoadingScreen.css";
 @import "./components/shared/RetryWidget.css";
+@import "./components/shared/Header.css";
 
 /* VARIABLES */
 :root {
   --primary-color: #29293d;
+  --header-heigth: 5rem;
 }
 
 .App {

@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
 import { LoadingScreen } from "./components/LoadingScreen";
-import { RetryWidget } from "./components/shared";
+import { QuestionListScreen } from "./components/QuestionListScreen";
+import { RetryWidget, Header } from "./components/shared";
 
 class App extends React.Component {
   state = {
@@ -41,7 +42,13 @@ class App extends React.Component {
   }
 
   render() {
-    return <div className="App">{this.renderLoading()}</div>;
+    return (
+      <div className="App">
+        {this.renderLoading()}
+        <Header></Header>
+        <QuestionListScreen></QuestionListScreen>
+      </div>
+    );
   }
 }
 
