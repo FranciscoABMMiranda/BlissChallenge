@@ -9,15 +9,24 @@ class QuestionListScreen extends React.Component {
   state = {
     limit: 10,
     offset: 0,
-    list: [],
+    list: [], // current list of questions
     oldList: [], // tracks list of questions before search query
     searchQuery: null,
   };
 
   componentDidMount() {
-    this.getList();
+    let query = this.props.location.search;
+    // if filtering query is not empty, then render accordingly
+    if (query.includes("question_filter")) {
+      query = query.slice(query.lastIndexOf("=") + 1); // get question ID
+      this.getQuestion(query);
+    } else {
+      this.getList();
+    }
   }
 
+  // get list of questions acording to limit and offset.
+  // update list (current list), old list (list before filtering) and offset
   getList() {
     const { limit, offset, list } = this.state;
     let newOffset = limit + offset;
@@ -32,6 +41,8 @@ class QuestionListScreen extends React.Component {
       });
   }
 
+  // get question according to its ID
+  // update current list
   getQuestion(query) {
     if (query !== "") {
       const url = `https://private-anon-7eb2956589-blissrecruitmentapi.apiary-mock.com/questions/${query}`;
@@ -43,11 +54,6 @@ class QuestionListScreen extends React.Component {
     } else this.setState({ list: this.state.oldList });
   }
 
-  filterQuestions(query) {
-    this.updateQuery(query);
-    this.getQuestion(query);
-  }
-
   // change url to match filtering query
   updateQuery(query) {
     if (query !== "") {
@@ -56,6 +62,12 @@ class QuestionListScreen extends React.Component {
       return;
     }
     this.props.history.push({ search: "" });
+  }
+
+  // changes url and gets question according to filter
+  filterQuestions(query) {
+    this.updateQuery(query);
+    this.getQuestion(query);
   }
 
   render() {

@@ -4,10 +4,13 @@
 @import "./components/QuestionListScreen/QuestionList.css";
 @import "./components/shared/RetryWidget.css";
 @import "./components/shared/Header.css";
+@import "./components/shared/ShareScreen/ShareButton.css";
+@import "./components/shared/ShareScreen/ShareWidget.css";
 
 /* VARIABLES */
 :root {
   --primary-color: #29293d;
+  --hover-primary-color: #d0d0e1;
   --header-heigth: 5rem;
 }
 

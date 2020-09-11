@@ -1,5 +1,6 @@
 import React from "react";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { ShareScreen } from "../shared";
 
 class QuestionList extends React.Component {
   // render each question into a table
@@ -45,7 +46,9 @@ class QuestionList extends React.Component {
               Load More Questions
             </button>
           </section>
-        ) : null}
+        ) : (
+          <ShareScreen />
+        )}
       </div>
     );
   }

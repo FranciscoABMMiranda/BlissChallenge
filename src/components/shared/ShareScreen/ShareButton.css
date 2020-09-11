@@ -1,0 +1,28 @@
+.share {
+  position: fixed;
+
+  margin-top: 1rem;
+  right: 5rem;
+  padding: 0.3rem 1rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--primary-color);
+  border-radius: 2px;
+  background-color: #fff;
+  outline: none;
+
+  cursor: pointer;
+  transition: 750ms ease;
+}
+
+.share span {
+  margin-right: 0.7rem;
+}
+
+.share:hover {
+  background-color: var(--hover-primary-color);
+}

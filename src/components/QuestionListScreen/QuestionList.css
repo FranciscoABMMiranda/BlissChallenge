@@ -53,5 +53,5 @@
 }
 
 .add-btn:hover {
-  background-color: #d0d0e1;
+  background-color: var(--hover-primary-color);
 }
