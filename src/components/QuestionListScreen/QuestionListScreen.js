@@ -48,6 +48,7 @@ class QuestionListScreen extends React.Component {
   // get question according to its ID
   // update current list
   getQuestion(query) {
+    const { oldList } = this.state;
     if (query !== "") {
       const url = `https://private-anon-7eb2956589-blissrecruitmentapi.apiary-mock.com/questions/${query}`;
       fetch(url, {
@@ -56,10 +57,11 @@ class QuestionListScreen extends React.Component {
         .then((response) => response.json())
         .then((json) => this.setState({ list: json }));
     } else {
-      if (this.state.oldList.length === 0) {
-        // if oldList is empty, get new list
-        this.getList();
-      }
+      // change list to old list
+      oldList.length === 0
+        ? // if oldList is empty, get new list
+          this.getList()
+        : this.setState({ list: oldList });
     }
   }
 
