@@ -1,9 +1,14 @@
 @import "./components/LoadingScreen/LoadingScreen.css";
+@import "./components/QuestionListScreen/QuestionListScreen.css";
+@import "./components/QuestionListScreen/HeaderQuestionList.css";
+@import "./components/QuestionListScreen/QuestionList.css";
 @import "./components/shared/RetryWidget.css";
+@import "./components/shared/Header.css";
 
 /* VARIABLES */
 :root {
   --primary-color: #29293d;
+  --header-heigth: 5rem;
 }
 
 .App {
