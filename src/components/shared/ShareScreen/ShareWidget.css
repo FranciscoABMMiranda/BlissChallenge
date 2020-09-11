@@ -13,21 +13,6 @@
   box-shadow: 4px 4px 10px #888888;
 }
 
-.close-widget {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-
-  background-color: Transparent;
-  border: none;
-  cursor: pointer;
-  outline: none;
-}
-
-.close-widget:hover {
-  opacity: 70%;
-}
-
 .share-widget form {
   display: flex;
   flex-direction: column;
@@ -51,16 +36,22 @@
   border: 2px solid black;
 }
 
-.share-widget a {
+.share-widget button {
   margin-top: 1rem;
+
+  font-size: 1rem;
   color: var(--primary-color);
+  border: 0;
+  outline: 0;
+
   transition: 750ms ease;
+  cursor: pointer;
 }
 
-.share-widget a:hover {
+.share-widget button:hover {
   color: var(--hover-primary-color);
 }
 
-.share-widget a span {
+.share-widget button span {
   margin-left: 0.3rem;
 }

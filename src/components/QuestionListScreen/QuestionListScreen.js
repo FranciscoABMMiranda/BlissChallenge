@@ -11,7 +11,7 @@ class QuestionListScreen extends React.Component {
     offset: 0,
     list: [], // current list of questions
     oldList: [], // tracks list of questions before search query
-    searchQuery: null,
+    query: "",
   };
 
   componentDidMount() {
@@ -20,6 +20,7 @@ class QuestionListScreen extends React.Component {
     if (query.includes("question_filter")) {
       query = query.slice(query.lastIndexOf("=") + 1); // get question ID
       this.getQuestion(query);
+      this.setState({ query });
     } else {
       this.getList();
     }
@@ -28,7 +29,8 @@ class QuestionListScreen extends React.Component {
   // get list of questions acording to limit and offset.
   // update list (current list), old list (list before filtering) and offset
   getList() {
-    const { limit, offset, list } = this.state;
+    const { limit, offset } = this.state;
+    let { list } = this.state;
     let newOffset = limit + offset;
     const url = `https://private-anon-7eb2956589-blissrecruitmentapi.apiary-mock.com/questions?limit=${limit}&offset=${offset}&filter=`;
     fetch(url, {
@@ -36,6 +38,8 @@ class QuestionListScreen extends React.Component {
     })
       .then((response) => response.json())
       .then((json) => {
+        // if list is not array (happens when filtering) initialize list
+        if (!Array.isArray(list)) list = [];
         const newList = list.concat(json);
         this.setState({ list: newList, oldList: newList, offset: newOffset });
       });
@@ -51,7 +55,12 @@ class QuestionListScreen extends React.Component {
       })
         .then((response) => response.json())
         .then((json) => this.setState({ list: json }));
-    } else this.setState({ list: this.state.oldList });
+    } else {
+      if (this.state.oldList.length === 0) {
+        // if oldList is empty, get new list
+        this.getList();
+      }
+    }
   }
 
   // change url to match filtering query
@@ -59,9 +68,8 @@ class QuestionListScreen extends React.Component {
     if (query !== "") {
       const newUrl = queryUrl + query;
       this.props.history.push({ search: newUrl });
-      return;
-    }
-    this.props.history.push({ search: "" });
+    } else this.props.history.push({ search: "" });
+    this.setState({ query });
   }
 
   // changes url and gets question according to filter
@@ -73,8 +81,12 @@ class QuestionListScreen extends React.Component {
   render() {
     return (
       <main className="question-main">
-        <HeaderQuestionList filterQuestions={this.filterQuestions.bind(this)} />
+        <HeaderQuestionList
+          query={this.state.query}
+          filterQuestions={this.filterQuestions.bind(this)}
+        />
         <QuestionList
+          {...this.props}
           list={this.state.list}
           loadQuestions={this.getList.bind(this)}
         />

@@ -1,8 +1,9 @@
 .share {
-  position: fixed;
+  position: absolute;
 
-  margin-top: 1rem;
-  right: 5rem;
+  margin-top: 0rem;
+  bottom: 1rem;
+  right: 1rem;
   padding: 0.3rem 1rem;
 
   display: flex;

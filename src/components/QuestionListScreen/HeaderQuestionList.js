@@ -13,6 +13,7 @@ class HeaderQuestionList extends React.Component {
           type="text"
           placeholder="Search question ID..."
           onChange={this.handleChange.bind(this)}
+          value={this.props.query}
         ></input>
       </header>
     );
