@@ -1,31 +1,31 @@
-.App {
-  text-align: center;
+@import "./components/LoadingScreen/LoadingScreen.css";
+@import "./components/ConnectivityScreen/ConnectivityScreen.css";
+@import "./components/QuestionListScreen/QuestionListScreen.css";
+@import "./components/QuestionListScreen/HeaderQuestionList.css";
+@import "./components/QuestionListScreen/QuestionList.css";
+@import "./components/QuestionListScreen/QuestionTable.css";
+@import "./components/QuestionListScreen/DetailScreen/DetailScreen.css";
+@import "./components/shared/RetryWidget.css";
+@import "./components/shared/Header.css";
+@import "./components/shared/CloseButton.css";
+@import "./components/shared/ShareScreen/ShareButton.css";
+@import "./components/shared/ShareScreen/ShareWidget.css";
+
+/* VARIABLES */
+:root {
+  --primary-color: #29293d;
+  --hover-primary-color: #d0d0e1;
+  --header-heigth: 5rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
