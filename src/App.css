@@ -1,4 +1,5 @@
 @import "./components/LoadingScreen/LoadingScreen.css";
+@import "./components/ConnectivityScreen/ConnectivityScreen.css";
 @import "./components/QuestionListScreen/QuestionListScreen.css";
 @import "./components/QuestionListScreen/HeaderQuestionList.css";
 @import "./components/QuestionListScreen/QuestionList.css";
