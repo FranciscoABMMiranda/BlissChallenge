@@ -1,0 +1,14 @@
+.close-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+
+  background-color: Transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.close-btn:hover {
+  opacity: 70%;
+}

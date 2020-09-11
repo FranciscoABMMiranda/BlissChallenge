@@ -1,5 +1,6 @@
 import React from "react";
-import { SendOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { CloseButton } from "../../shared";
+import { SendOutlined } from "@ant-design/icons";
 
 const emailSubject = "Bliss Challenge";
 
@@ -12,16 +13,15 @@ class ShareWidget extends React.Component {
     this.setState({ email: event.target.value });
   }
 
+  closeWidget() {
+    this.props.setWidgetDisplay(false);
+  }
+
   render() {
     const { email } = this.state;
     return (
       <section className="share-widget">
-        <button
-          className="close-widget"
-          onClick={() => this.props.setWidgetDisplay(false)}
-        >
-          <CloseCircleOutlined />
-        </button>
+        <CloseButton close={this.closeWidget.bind(this)} />
         <form>
           <label>Share this page via email.</label>
           <input
