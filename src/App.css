@@ -5,6 +5,7 @@
 @import "./components/QuestionListScreen/QuestionList.css";
 @import "./components/QuestionListScreen/QuestionTable.css";
 @import "./components/QuestionListScreen/DetailScreen/DetailScreen.css";
+@import "./components/QuestionListScreen/DetailScreen/DetailVote.css";
 @import "./components/shared/RetryWidget.css";
 @import "./components/shared/Header.css";
 @import "./components/shared/CloseButton.css";
