@@ -86,6 +86,7 @@ class QuestionListScreen extends React.Component {
           filterQuestions={this.filterQuestions.bind(this)}
         />
         <QuestionList
+          {...this.props}
           list={this.state.list}
           loadQuestions={this.getList.bind(this)}
         />

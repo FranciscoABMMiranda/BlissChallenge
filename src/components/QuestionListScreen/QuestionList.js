@@ -3,19 +3,54 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { ShareScreen } from "../shared";
 import { DetailScreen } from "./DetailScreen";
 
+// query url for question details
+const queryUrl = "?question_id=";
+
 class QuestionList extends React.Component {
   state = {
     renderDetails: false,
     selectedQuestion: null,
+    query: "",
   };
+
+  componentDidMount() {
+    let query = this.props.location.search;
+    // if filtering query is not empty, then render accordingly
+    if (query.includes("question_id")) {
+      query = query.slice(query.lastIndexOf("=") + 1); // get question ID
+      this.getQuestion(query);
+    }
+  }
+
+  // get question according to its ID
+  getQuestion(query) {
+    if (query !== "") {
+      const url = `https://private-anon-7eb2956589-blissrecruitmentapi.apiary-mock.com/questions/${query}`;
+      fetch(url, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((json) => this.openDetails(json));
+    }
+  }
+
+  updateQuery(query) {
+    if (query !== "") {
+      const newUrl = queryUrl + query;
+      this.props.history.push({ search: newUrl });
+    } else this.props.history.push({ search: "" });
+    this.setState({ query });
+  }
 
   // open details page
   openDetails(question) {
+    this.updateQuery(question.id);
     this.setState({ renderDetails: true, selectedQuestion: question });
   }
 
   // close details page
   closeDetails() {
+    this.updateQuery("");
     this.setState({ renderDetails: false });
   }
 

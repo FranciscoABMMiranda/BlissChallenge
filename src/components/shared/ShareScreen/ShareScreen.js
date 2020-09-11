@@ -11,10 +11,6 @@ class ShareScreen extends React.Component {
     this.setState({ displayWidget: display });
   }
 
-  closeWidget() {
-    this.setWidgetDisplay(false);
-  }
-
   render() {
     const { displayWidget } = this.state;
     return (

@@ -1,10 +1,10 @@
 import React from "react";
-import { CloseButton } from "../../shared";
+import { CloseButton, ShareScreen } from "../../shared";
 
 class DetailScreen extends React.Component {
   state = {
     selected: null,
-    renderResults: false,
+    shouldRenderResults: false,
   };
 
   // update checked option
@@ -20,11 +20,21 @@ class DetailScreen extends React.Component {
       return alert("No selection made!");
     }
     this.props.updateQuestion(selected);
-    this.setState({ renderResults: true });
+    this.setState({ shouldRenderResults: true });
   }
 
   // render vote results after submiting form
-  renderResults() {}
+  renderResults(question) {
+    return question.choices.map((choice) => {
+      console.log(choice);
+      return (
+        <tr className="choice-results" key={choice.choice}>
+          <td>{choice.choice}</td>
+          <td>{choice.votes}</td>
+        </tr>
+      );
+    });
+  }
 
   // render each radio button
   renderChoice(choice, key, id) {
@@ -56,15 +66,37 @@ class DetailScreen extends React.Component {
   }
   render() {
     const { question } = this.props;
-    //console.log(question);
+    const { shouldRenderResults } = this.state;
     return (
       <section className="detail-screen">
         <CloseButton close={this.props.closeDetails} />
         <header>
-          <h1>{question.id}</h1>
-          <h2>{question.question}</h2>
+          <h2>{`Question ${question.id}:`}</h2>
+          <h1>{question.question}</h1>
         </header>
-        {this.renderForm(question)}
+        <section className="form-container">
+          <figure>
+            <img src={question.thumb_url} alt="question-img"></img>
+          </figure>
+          {shouldRenderResults ? (
+            <section className="results">
+              <p>Results:</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Language</th>
+                    <th>Votes</th>
+                  </tr>
+                </thead>
+                <tbody>{this.renderResults(question)}</tbody>
+              </table>
+            </section>
+          ) : (
+            this.renderForm(question)
+          )}
+        </section>
+        <ShareScreen />
+        <p className="published">{`Published at: ${question.published_at}`}</p>
       </section>
     );
   }
