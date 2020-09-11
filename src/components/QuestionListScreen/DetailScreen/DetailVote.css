@@ -1,0 +1,45 @@
+.question-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question-form label {
+  margin: 0.5rem;
+}
+
+.question-form button {
+  margin-top: 0.8rem;
+  padding: 0.5rem 1rem;
+
+  background: #fff;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: 750ms ease;
+  outline: 0;
+}
+
+.question-form button:hover {
+  opacity: 75%;
+}
+
+.question-form button:hover {
+  opacity: 75%;
+}
+
+.results {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.results p {
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+
+.choice-results {
+  margin: 0rem 1rem;
+}

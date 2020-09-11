@@ -35,14 +35,16 @@
   font-size: 1.2rem;
 }
 
-.form-container {
+.vote-form {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  margin-bottom: 2rem;
 }
 
-.form-container figure {
+.vote-form figure {
   margin-left: 0;
 }
 
@@ -86,7 +88,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .results p {

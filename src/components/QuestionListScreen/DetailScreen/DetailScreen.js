@@ -1,5 +1,7 @@
 import React from "react";
 import { CloseButton, ShareScreen } from "../../shared";
+import DetailVote from "./DetailVote";
+import PropTypes from "prop-types";
 
 class DetailScreen extends React.Component {
   state = {
@@ -23,50 +25,8 @@ class DetailScreen extends React.Component {
     this.setState({ shouldRenderResults: true });
   }
 
-  // render vote results after submiting form
-  renderResults(question) {
-    return question.choices.map((choice) => {
-      console.log(choice);
-      return (
-        <tr className="choice-results" key={choice.choice}>
-          <td>{choice.choice}</td>
-          <td>{choice.votes}</td>
-        </tr>
-      );
-    });
-  }
-
-  // render each radio button
-  renderChoice(choice, key, id) {
-    return (
-      <label key={key}>
-        {choice.choice}
-        <input
-          type="radio"
-          name={id}
-          value={key}
-          onChange={this.updateChecked.bind(this)}
-        />
-      </label>
-    );
-  }
-
-  // render form with questions and choices
-  renderForm(question) {
-    return (
-      <form className="question-form">
-        <section className="choices">
-          {question.choices.map((choice, key) =>
-            this.renderChoice(choice, key, question.id)
-          )}
-        </section>
-        <button onClick={this.updateResults.bind(this)}>Submit</button>
-      </form>
-    );
-  }
   render() {
     const { question } = this.props;
-    const { shouldRenderResults } = this.state;
     return (
       <section className="detail-screen">
         <CloseButton close={this.props.closeDetails} />
@@ -74,32 +34,23 @@ class DetailScreen extends React.Component {
           <h2>{`Question ${question.id}:`}</h2>
           <h1>{question.question}</h1>
         </header>
-        <section className="form-container">
-          <figure>
-            <img src={question.thumb_url} alt="question-img"></img>
-          </figure>
-          {shouldRenderResults ? (
-            <section className="results">
-              <p>Results:</p>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Language</th>
-                    <th>Votes</th>
-                  </tr>
-                </thead>
-                <tbody>{this.renderResults(question)}</tbody>
-              </table>
-            </section>
-          ) : (
-            this.renderForm(question)
-          )}
-        </section>
+        <DetailVote
+          shouldRenderResults={this.state.shouldRenderResults}
+          question={this.props.question}
+          updateChecked={this.updateChecked.bind(this)}
+          updateResults={this.updateResults.bind(this)}
+        />
         <ShareScreen />
         <p className="published">{`Published at: ${question.published_at}`}</p>
       </section>
     );
   }
 }
+
+DetailScreen.propTypes = {
+  question: PropTypes.object,
+  updateQuestion: PropTypes.func,
+  closeDetails: PropTypes.func,
+};
 
 export default DetailScreen;

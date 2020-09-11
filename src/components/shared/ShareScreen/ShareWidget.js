@@ -1,6 +1,7 @@
 import React from "react";
 import { CloseButton } from "../../shared";
 import { SendOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
 
 function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -12,6 +13,7 @@ class ShareWidget extends React.Component {
     email: "",
   };
 
+  // share url via email
   share(event) {
     event.preventDefault();
     const { email } = this.state;
@@ -28,10 +30,12 @@ class ShareWidget extends React.Component {
     }
   }
 
+  // updates email according to input
   updateEmail(event) {
     this.setState({ email: event.target.value });
   }
 
+  // close widget
   closeWidget() {
     this.props.setWidgetDisplay(false);
   }
@@ -56,5 +60,9 @@ class ShareWidget extends React.Component {
     );
   }
 }
+
+ShareWidget.propTypes = {
+  setWidgetDisplay: PropTypes.func,
+};
 
 export default ShareWidget;

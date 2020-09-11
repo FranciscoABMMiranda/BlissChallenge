@@ -1,7 +1,8 @@
 import React from "react";
 import { ShareAltOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
 
-class ShareScreen extends React.Component {
+class ShareButton extends React.Component {
   render() {
     return (
       <button
@@ -15,4 +16,8 @@ class ShareScreen extends React.Component {
   }
 }
 
-export default ShareScreen;
+ShareButton.propTypes = {
+  setWidgetDisplay: PropTypes.func,
+};
+
+export default ShareButton;

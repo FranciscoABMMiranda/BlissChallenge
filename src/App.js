@@ -64,9 +64,9 @@ class App extends React.Component {
       <Router basename="/questions">
         <div className="App">
           {this.renderLoading()}
-          {connection ? null : <ConnectivityScreen />}
           <Header />
           <Route exact path="/" component={QuestionListScreen}></Route>
+          {connection ? null : <ConnectivityScreen />}
         </div>
       </Router>
     );

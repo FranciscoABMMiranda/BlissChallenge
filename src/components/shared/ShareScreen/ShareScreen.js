@@ -7,6 +7,7 @@ class ShareScreen extends React.Component {
     displayWidget: false,
   };
 
+  // set visibility of ShareWidget
   setWidgetDisplay(display) {
     this.setState({ displayWidget: display });
   }

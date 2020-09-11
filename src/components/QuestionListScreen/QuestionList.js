@@ -2,6 +2,8 @@ import React from "react";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { ShareScreen } from "../shared";
 import { DetailScreen } from "./DetailScreen";
+import QuestionTable from "./QuestionTable";
+import PropTypes from "prop-types";
 
 // query url for question details
 const queryUrl = "?question_id=";
@@ -34,6 +36,7 @@ class QuestionList extends React.Component {
     }
   }
 
+  // updates query in url to mach search query
   updateQuery(query) {
     if (query !== "") {
       const newUrl = queryUrl + query;
@@ -68,31 +71,6 @@ class QuestionList extends React.Component {
     });
   }
 
-  // render each question into a table
-  // uses the list of questions retrieved in QuestionListScreen
-  renderList() {
-    let { list } = this.props;
-    if (list.length === 0) return null;
-    if (!Array.isArray(list)) list = [list]; // if it is not an array (when filtering), transform it
-
-    return list.map((question) => {
-      return (
-        <tr key={question.id}>
-          <td>{question.id}</td>
-          <td>{question.question}</td>
-          <td>
-            <button
-              className="details-btn"
-              onClick={() => this.openDetails(question)}
-            >
-              Show details
-            </button>
-          </td>
-        </tr>
-      );
-    });
-  }
-
   render() {
     const { renderDetails, selectedQuestion } = this.state;
     let renderButton = true;
@@ -102,15 +80,10 @@ class QuestionList extends React.Component {
 
     return (
       <div>
-        <table className="question-list">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Question</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderList()}</tbody>
-        </table>
+        <QuestionTable
+          list={this.props.list}
+          openDetails={this.openDetails.bind(this)}
+        ></QuestionTable>
         {renderButton ? (
           <section className="add-question">
             <button className="add-btn" onClick={this.props.loadQuestions}>
@@ -132,5 +105,10 @@ class QuestionList extends React.Component {
     );
   }
 }
+
+QuestionList.propTypes = {
+  list: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  loadQuestions: PropTypes.func,
+};
 
 export default QuestionList;

@@ -3,6 +3,7 @@
 @import "./components/QuestionListScreen/QuestionListScreen.css";
 @import "./components/QuestionListScreen/HeaderQuestionList.css";
 @import "./components/QuestionListScreen/QuestionList.css";
+@import "./components/QuestionListScreen/QuestionTable.css";
 @import "./components/QuestionListScreen/DetailScreen/DetailScreen.css";
 @import "./components/shared/RetryWidget.css";
 @import "./components/shared/Header.css";

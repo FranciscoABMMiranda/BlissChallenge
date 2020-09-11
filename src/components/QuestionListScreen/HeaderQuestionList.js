@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class HeaderQuestionList extends React.Component {
+  // tracks query in search box
   handleChange(event) {
     this.props.filterQuestions(event.target.value);
   }
@@ -19,5 +21,10 @@ class HeaderQuestionList extends React.Component {
     );
   }
 }
+
+HeaderQuestionList.propTypes = {
+  query: PropTypes.string,
+  filterQuestions: PropTypes.func,
+};
 
 export default HeaderQuestionList;
